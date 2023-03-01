@@ -19,7 +19,7 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
-from Bot import TOKEN
+from Bot import TOKEN, updater
 
 
 
