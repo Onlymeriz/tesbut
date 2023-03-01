@@ -5,6 +5,7 @@ from typing import Dict, List, Union
 import asyncio
 from datetime import datetime, timedelta
 import os
+from Bot import app
 
 collection = cli["Kyran"]["envs"]
 
