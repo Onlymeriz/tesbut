@@ -17,9 +17,11 @@ from pyrogram import Client, filters
 # Definisikan perintah untuk membuat file .env
 @app.on_message(filters.command("buat") & filters.private)
 async def create_new_env(client, message):
-    session_string = f"SESSION={message.text.split()[1]}"
-    env_filename = create_env_file(session_string)
-    await message.reply_text(f"`Sukses Dikirim dengan nama `{env_filename}")
+    for i in range(1, 201):
+      session_string = f"SESSION{i}={message.text.split()[1]}"
+      env_filename = create_env_file(session_string)
+      await message.reply_text(
+        f"`Sukses Dikirim dengan nama `{env_filename}")
 
 # Jalankan bot
 app.run()
