@@ -22,9 +22,9 @@ async def create_env(client, message):
         if not os.path.isfile(filename):
             # Jika file belum ada, maka buat file baru dan isi dengan string session sesuai urutan file
             with open(filename, "w") as file:
-                file.write(f"SESSION=session{i}")
+                file.write(f"SESSION{i}=")
             # Kirim file .env ke pengguna
-            await message.reply_document(filename)
+            await message.reply_text(f"`Sukses Dikirim dengan nama `{filename}")
             break
 
 # Jalankan bot
