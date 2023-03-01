@@ -1,73 +1,39 @@
-import telegram
 import os
+from dotenv import load_dotenv
+from pyrogram import Client, filters
+from pyrogram.types import Message
+from Bot import *
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram.error import (
-    BadRequest,
-    ChatMigrated,
-    NetworkError,
-    TelegramError,
-    TimedOut,
-    Unauthorized,
-)
-from telegram.ext import (
-    CallbackContext,
-    CallbackQueryHandler,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-)
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
-from telegram.utils.helpers import escape_markdown
-from Bot import TOKEN, updater
+# Fungsi untuk membuat file .env dan mengisi nama session di dalamnya
+def create_env_file(session_name: str):
+    with open('.env', 'w') as f:
+        f.write(f"API_ID={os.environ.get('API_ID')}\n")
+        f.write(f"API_HASH={os.environ.get('API_HASH')}\n")
+        f.write(f"BOT_TOKEN={os.environ.get('BOT_TOKEN')}\n")
+        f.write(f"SESSION_NAME={session_name}")
 
 
+# Membuat instance Pyrogram Client
 
-def start(update, context):
-    """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi! Welcome to the .env bot. To create a new .env file, please enter the name of the file.')
 
-def create_env_file(update, context):
-    """Create a new .env file and ask for the session string."""
-    env_file_name = context.args[0]
-    open(env_file_name, "a").close()  # create a new file
+# Fungsi yang akan dijalankan ketika pengguna memasukkan nama file .env dan session name
+@bot.on_message(filters.private & filters.text)
+def handle_message(bot: Client, message: Message):
+    if message.text.startswith('/start'):
+        bot.send_message(
+            chat_id=message.chat.id,
+            text='Hai! Silakan masukkan nama file .env yang ingin kamu buat.'
+        )
+    elif message.text.endswith('.env'):
+        session_name = input('Silakan masukkan session name yang ingin kamu gunakan: ')
+        create_env_file(session_name)
+        load_dotenv('.env')
+        bot.send_message(
+            chat_id=message.chat.id,
+            text=f'File .env dengan nama {message.text} sudah berhasil dibuat dan di-load. '
+                 f'String session kamu adalah {session_name}.'
+        )
 
-    # ask for the session string
-    update.message.reply_text(f"Please enter the session string to be added to {env_file_name}:")
-    return "GET_SESSION_STRING"
 
-def get_session_string(update, context):
-    """Add the session string to the .env file."""
-    session_string = update.message.text
-    env_file_name = context.args[0]
-    with open(env_file_name, "a") as f:
-        f.write(f"SESSION_STRING='{session_string}'\n")
-
-    update.message.reply_text(f"Session string added to {env_file_name}.")
-    return -1
-
-def cancel(update, context):
-    """Cancel the current conversation."""
-    update.message.reply_text('Operation cancelled.')
-    return -1
-
-def main():
-    """Start the bot."""
-
-    # Define the conversation flow using callbacks
-    conv_handler = telegram.ext.ConversationHandler(
-        entry_points=[CommandHandler("start", start)],
-        states={
-            "CREATE_ENV_FILE": [CommandHandler("create", create_env_file)],
-            "GET_SESSION_STRING": [MessageHandler(telegram.ext.filters.Filters.text, get_session_string)],
-        },
-        fallbacks=[CommandHandler("cancel", cancel)],
-    )
-
-    updater.dispatcher.add_handler(conv_handler)
-
-    updater.start_polling()
-    updater.idle()
-
-if __name__ == '__main__':
-    main()
+# Jalankan bot
+bot.run()
