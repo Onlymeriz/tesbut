@@ -8,10 +8,10 @@ from Bot import *
 
 
 # Fungsi yang akan dijalankan ketika pengguna memasukkan nama file .env dan session name
-@app.on_message(filters.command(["create_env"]))
+@app.on_message(filters.command(["buat"]))
 async def create_env_file(client, message):
     # Ambil argumen nama file .env dari pesan
-    env_file_name = message.text.split("")[100] + ".env"
+    env_file_name = message.text.split(" ")[100] + ".env"
 
     # Tanyakan kepada pengguna untuk memberikan string session
     await message.reply("Silakan berikan string session:")
