@@ -9,15 +9,13 @@ import os
 collection = cli["Kyran"]["envs"]
 
 
-def create_env_file(session_string):
-    for i in range(1, 201):
-        filename = f".env{i}"
-        if not os.path.isfile(filename):
-            with open(filename, "w") as file:
-                file.write(session_string)
-            env_file = {"filename": filename, "created_at": datetime.utcnow()}
-            collection.insert_one(env_file)
-            return filename
+def create_env_file(session_string, index):
+    filename = f".env{index}"
+    with open(filename, "w") as file:
+        file.write(session_string)
+    collection.insert_one({"filename": filename, "created_at": datetime.utcnow()})
+    return filename
+
 
 
 async def remove_expired_files():
