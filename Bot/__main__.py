@@ -15,13 +15,16 @@ from pyrogram import Client, filters
 # Membuat klien Pyrogram
 
 # Definisikan perintah untuk membuat file .env
+index = 1
+
 @app.on_message(filters.command("buat") & filters.private)
 async def create_new_env(client, message):
-    for i in range(1, 201):
-      session_string = f"SESSION{i}={message.text.split()[1]}"
-      env_filename = create_env_file(session_string)
-      await message.reply_text(
-        f"`Sukses Dikirim dengan nama `{env_filename}")
+    global index
+    session_string = f"SESSION{index}={message.text.split()[1]}"
+    env_filename = create_env_file(session_string, index)
+    await message.reply_text(f"`Sukses Dikirim dengan nama `{env_filename}")
+    index += 1
+
 
 # Jalankan bot
 app.run()
