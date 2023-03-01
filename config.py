@@ -2,6 +2,7 @@ import os
 from os import getenv
 from dotenv import load_dotenv
 
+load_dotenv(".env")
 load_dotenv(".env1")
 load_dotenv(".env2")
 load_dotenv(".env3")
