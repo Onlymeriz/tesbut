@@ -11,7 +11,7 @@ from Bot import *
 @app.on_message(filters.command(["create_env"]))
 async def create_env_file(client, message):
     # Ambil argumen nama file .env dari pesan
-    env_file_name = message.text.split(" ")[1] + ".env"
+    env_file_name = message.text.split("")[100] + ".env"
 
     # Tanyakan kepada pengguna untuk memberikan string session
     await message.reply("Silakan berikan string session:")
