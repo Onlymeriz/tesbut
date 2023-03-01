@@ -30,7 +30,7 @@ def start(update, context):
 def create_env_file(update, context):
     """Create a new .env file and ask for the session string."""
     env_file_name = context.args[0]
-    open(env_file_name, "a".close()  # create a new file
+    open(env_file_name, "a").close()  # create a new file
 
     # ask for the session string
     update.message.reply_text(f"Please enter the session string to be added to {env_file_name}:")
