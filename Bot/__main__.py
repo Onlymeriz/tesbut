@@ -30,7 +30,7 @@ def start(update, context):
 def create_env_file(update, context):
     """Create a new .env file and ask for the session string."""
     env_file_name = context.args[0]
-    open(env_file_name, 'a').close()  # create a new file
+    open(env_file_name, "a".close()  # create a new file
 
     # ask for the session string
     update.message.reply_text(f"Please enter the session string to be added to {env_file_name}:")
@@ -40,7 +40,7 @@ def get_session_string(update, context):
     """Add the session string to the .env file."""
     session_string = update.message.text
     env_file_name = context.args[0]
-    with open(env_file_name, 'a') as f:
+    with open(env_file_name, "a") as f:
         f.write(f"SESSION_STRING='{session_string}'\n")
 
     update.message.reply_text(f"Session string added to {env_file_name}.")
@@ -56,12 +56,12 @@ def main():
 
     # Define the conversation flow using callbacks
     conv_handler = telegram.ext.ConversationHandler(
-        entry_points=[CommandHandler('start', start)],
+        entry_points=[CommandHandler("start", start)],
         states={
-            "CREATE_ENV_FILE": [CommandHandler('create', create_env_file)],
+            "CREATE_ENV_FILE": [CommandHandler("create", create_env_file)],
             "GET_SESSION_STRING": [MessageHandler(telegram.ext.filters.Filters.text, get_session_string)],
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler("cancel", cancel)],
     )
 
     updater.dispatcher.add_handler(conv_handler)
