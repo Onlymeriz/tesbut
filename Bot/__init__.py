@@ -14,4 +14,4 @@ app = Client(
   bot_token=BOT_TOKEN,
   )
   
-  logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
