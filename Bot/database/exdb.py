@@ -3,7 +3,7 @@ from . import cli
 from typing import Dict, List, Union
 import asyncio
 from datetime import datetime, timedelta
-from pymongo import MongoClient
+import os
 
 collection = cli["Kyran"]["envs"]
 
