@@ -1,5 +1,6 @@
 from pyrogram.filters import chat
 from . import cli
+import asyncio
 from typing import Dict, List, Union
 import asyncio
 from datetime import datetime, timedelta
@@ -22,16 +23,18 @@ def create_env_file(session_string):
             # Kirim file .env ke pengguna
             return filename
 
+# Set expiration date for env file
 expiration_date = datetime.utcnow() + timedelta(days=30)
 
 # Retrieve expired env files
 expired_env_files = collection.find({"created_at": {"$lt": expiration_date}})
 
 # Remove expired env files from load_dotenv
-for env_file in expired_env_files:
+async for env_file in expired_env_files:
     os.environ.pop(env_file["filename"])
 
 # Remove expired env files from database
-collection.delete_many({"created_at": {"$lt": expiration_date}})
+await collection.delete_many({"created_at": {"$lt": expiration_date}})
+
 
 
