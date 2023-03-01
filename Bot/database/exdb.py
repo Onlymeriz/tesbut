@@ -38,7 +38,3 @@ async def remove_expired_files():
 
     # Remove expired env files from database
     await collection.delete_many({"created_at": {"$lt": expiration_date}})
-
-@app.on_startup
-async def start_scheduler(client):
-    scheduler.add_job(remove_expired_files, "interval", days=1)
