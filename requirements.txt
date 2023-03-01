@@ -1,3 +1,4 @@
 pyrogram
 python-dotenv
 pymongo
+motor==3.0.0
