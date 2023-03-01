@@ -53,7 +53,6 @@ def cancel(update, context):
 
 def main():
     """Start the bot."""
-    updater = Updater(TOKEN, use_context=True)
 
     # Define the conversation flow using callbacks
     conv_handler = telegram.ext.ConversationHandler(
