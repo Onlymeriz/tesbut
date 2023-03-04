@@ -82,9 +82,9 @@ async def main():
                     os.remove(session_file)
                     LOGGER("Ubot").info(f"Session file for {ex.first_name} has been removed due to error: {e}")
                     await bot.send_message(BOTLOG_CHATID, f"Session file for {ex.first_name} has been removed due to error: {e}")
-             await idle()
-             for ex_id in ids:
-               await remove_user(ex_id)
+    await idle()
+    for ex_id in ids:
+      await remove_user(ex_id)
 
     
     # Menjaga bot tetap hid
