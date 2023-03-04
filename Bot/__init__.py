@@ -1,11 +1,17 @@
 from config import *
 from pyrogram import Client
 import os
+import asyncio
 import logging
+import sys
+import time
+import os
 
 API_ID="1634450"
 API_HASH="1a42e816cae8d86e71a4c466bba19b8c"
 BOT_TOKEN="6279149779:AAEFnmoUUcxfMeceZQJ4_E3lETYlaqWjciU"
+
+LOOP = asyncio.get_event_loop()
 
 app = Client(
   name="app",
