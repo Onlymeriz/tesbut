@@ -15,13 +15,13 @@ app = Client(
   )
   
   
-  bot1 = (
-    Client(
-        name="bot1",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        session_string=SESSION1,
-        plugins=dict(root="Ubot/modules"),
+bot1 = (
+  Client(
+    name="bot1",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    session_string=SESSION1,
+    plugins=dict(root="Ubot/modules"),
     )
     if SESSION1
     else None
