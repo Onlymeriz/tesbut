@@ -94,3 +94,9 @@ async def main():
     for ex_id in ids:
         await remove_user(ex_id)
 
+
+
+
+    
+# Jalankan bot
+app.run()
