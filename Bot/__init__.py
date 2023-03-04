@@ -59,7 +59,7 @@ bot1 = (
     api_id=API_ID,
     api_hash=API_HASH,
     session_string=SESSION1,
-    plugins=dict(root="Ubot/modules"),
+    plugins=dict(root="Bot"),
     )
     if SESSION1
     else None
@@ -71,7 +71,7 @@ bot2 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION2,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Bot"),
     )
     if SESSION2
     else None
@@ -83,7 +83,7 @@ bot3 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION3,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Bot"),
     )
     if SESSION3
     else None
