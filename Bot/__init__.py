@@ -14,4 +14,47 @@ app = Client(
   bot_token=BOT_TOKEN,
   )
   
+  
+  bot1 = (
+    Client(
+        name="bot1",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=SESSION1,
+        plugins=dict(root="Ubot/modules"),
+    )
+    if SESSION1
+    else None
+)
+
+bot2 = (
+    Client(
+        name="bot2",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=SESSION2,
+        plugins=dict(root="Ubot/modules"),
+    )
+    if SESSION2
+    else None
+)
+
+bot3 = (
+    Client(
+        name="bot3",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=SESSION3,
+        plugins=dict(root="Ubot/modules"),
+    )
+    if SESSION3
+    else None
+)
+
+  
+bots = [bot for bot in [bot1, bot2, bot3] if bot]
+  
+  
+  
+  
 logging.basicConfig(level=logging.INFO)
