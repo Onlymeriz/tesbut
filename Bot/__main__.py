@@ -20,7 +20,7 @@ ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 
 async def create_env(client, message):
     session_index = 1
     while True:
-        filename = f".env{session_index}"
+        filename = f".env"
         if os.path.isfile(filename):
             with open(filename, "r") as file:
                 contents = file.read()
