@@ -4,27 +4,28 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from Bot import *
 from Bot.database.exdb import *
-
-# Fungsi untuk membuat file .env dan mengisi nama session di dalamnya
-
-
-# Fungsi yang akan dijalankan ketika pengguna memasukkan nama file .env dan session name
 import os
 from pyrogram import Client, filters
-
-# Membuat klien Pyrogram
-
-# Definisikan perintah untuk membuat file .env
-index = 1
-
-@app.on_message(filters.command("buat") & filters.private)
-async def create_new_env(client, message):
-    global index
-    session_string = f"SESSION{index}={message.text.split()[1]}"
-    env_filename = create_env_file(session_string, index)
-    await message.reply_text(f"`Sukses Dikirim dengan nama `{env_filename}")
-    index += 1
+import pyrogram
+from pyrogram import Client
 
 
+@app.on_message()
+async def start(client, message):
+    # Kirim pesan permintaan nomor telepon
+    await message.reply_text("Silakan kirim nomor telepon Anda untuk membuat string session.")
+
+@app.on_message(pyrogram.filters.regex(r"\+\d+"))
+async def generate_session(client, message):
+    # Mengambil nomor telepon dari pesan pengguna
+    phone_number = message.text
+    
+    # Membuat string session
+    with bot:
+        session = await bot.create_session_string(phone_number)
+        
+    # Kirim string session ke pengguna
+    await message.reply_text(f"Ini adalah string session Anda:\n\n{session}")
+    
 # Jalankan bot
 app.run()
