@@ -36,7 +36,7 @@ async def main():
     
     # Memuat semua modul yang didefinisikan dalam daftar ALL_MODULES
     for all_module in ALL_MODULES:
-        importlib.import_module("Ubot.modules" + all_module)
+        importlib.import_module("Bot" + all_module)
     
     # Menjalankan setiap bot dan menambahkannya ke daftar ID pengguna
     for bot in bots:
