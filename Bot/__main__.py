@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from pyrogram import Client, filters
+from uvloop import install
 from pyrogram.types import Message
 from Bot import *
 from Bot.database.exdb import *
@@ -85,6 +86,12 @@ async def main():
     await idle()
     for ex_id in ids:
       await remove_user(ex_id)
+      
+      
+if __name__ == "__main__":
+   install()
+   LOOP.run_until_complete(main())
+   LOGGER("Info").info("Starting Ubot Pyro Userbot")
 
     
     # Menjaga bot tetap hid
