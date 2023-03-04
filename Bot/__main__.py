@@ -10,7 +10,7 @@ from pyrogram.errors import SessionPasswordNeeded
 from pyrogram.session import Session
 
 
-import os
+load_dotenv()
 
 ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
 
