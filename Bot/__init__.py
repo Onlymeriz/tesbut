@@ -6,6 +6,7 @@ import logging
 import sys
 import time
 import os
+from ast import parse
 
 LOOP = asyncio.get_event_loop()
 
@@ -17,6 +18,23 @@ LOG_FILE_NAME = "logs.txt"
 
 AKTIFPERINTAH = {}
 # /start message when other users start your bot
+
+def LOGGER(name: str) -> logging.Logger:
+    """ get a Logger object """
+    return logging.getLogger(name)
+
+class User(Client):
+    """ modded client for SessionMakerUser """
+    def __init__(self):
+        super().__init__(
+            name="tu",
+            api_hash=API_HASH,
+            api_id=APP_ID,
+            workers=BOT_WORKERS,
+            in_memory=True,
+            parse_mode=enums.ParseMode.HTML
+        )
+        self.LOGGER = LOGGER
 
 
 app = Client(
