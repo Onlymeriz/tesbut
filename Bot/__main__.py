@@ -14,29 +14,30 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 @app.on_message(filters.command("start"))
-def start_command_handler(client: Client, message: Message):
-    client.send_message(
+async def start_command_handler(client: Client, message: Message):
+    await app.message.reply_text(
         chat_id=message.chat.id,
         text="Halo! Silakan masukkan nomor telepon Anda untuk membuat string session Pyrogram versi 2."
     )
 
 @app.on_message(filters.regex(r"^\+\d{10,12}$"))
-def phone_number_handler(client: Client, message: Message):
+async def phone_number_handler(client: Client, message: Message):
     phone_number = message.text
     session_name = phone_number
     try:
-        client.send_code(phone_number)
+        await client.send_code(phone_number)
         code = input("Masukkan kode verifikasi Anda: ")
-        user = client.sign_in(phone_number, code)
-        string_session = client.export_session_string()
-        client.send_message(
+        user = await client.sign_in(phone_number, code)
+        string_session = await client.export_session_string()
+        await app.message.reply_text(
             chat_id=message.chat.id,
             text=f"String session Pyrogram Anda: {string_session}"
         )
     except Exception as e:
-        client.send_message(
+        await app.message.reply_text(
             chat_id=message.chat.id,
             text=f"Terjadi kesalahan: {e}"
         )
+
 
 app.run()
