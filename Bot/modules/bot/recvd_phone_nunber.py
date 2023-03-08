@@ -11,7 +11,7 @@ from pyrogram.types import (
 from Bot import AKTIFPERINTAH, User
 
 
-@Client.on_message(
+@app.on_message(
     filters.text &
     filters.private,
     group=1
