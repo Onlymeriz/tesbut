@@ -8,6 +8,8 @@ from pyrogram.types import (
     Message
 )
 
+from Bot import app
+
 @app.on_message(
     filters.command("start") &
     filters.private
