@@ -11,9 +11,9 @@ from pyrogram.errors import (
     SessionPasswordNeeded,
     BadRequest
 )
-from Bot import AKTIFPERINTAH
+from Bot import AKTIFPERINTAH, app
 
-@Client.on_message(
+@app.on_message(
     filters.text &
     filters.private,
     group=2
