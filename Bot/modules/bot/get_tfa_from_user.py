@@ -11,7 +11,7 @@ from pyrogram.types import (
 from pyrogram.errors import (
     PasswordHashInvalid
 )
-from Bot import AKTIFPERINTAH
+from Bot import AKTIFPERINTAH, app
 
 @Client.on_message(
     filters.text &
