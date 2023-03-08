@@ -30,7 +30,6 @@ if os.path.isfile(filename):
         contents = file.read()
     session_list = re.findall(r"(SESSION\d+)=.*", contents)
     session_index = len(session_list) + 1
-    session_index += 1
 else:
     session_index = 1
 
