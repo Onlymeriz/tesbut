@@ -40,7 +40,7 @@ async def create_env(client, message):
         file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
         load_dotenv()
     await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-    session_index += 2
+    session_index += 1
     
     
     
