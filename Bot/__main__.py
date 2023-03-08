@@ -35,8 +35,8 @@ else:
 
 @app.on_message(command_filter)
 async def create_env(client, message):
+    global session_index
     session_index += 1
-    global session_index  # tambahkan ini
     with open(filename, "a") as file:
         file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
         load_dotenv()
