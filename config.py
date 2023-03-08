@@ -9,7 +9,7 @@ API_ID = int(getenv("API_ID", "22156937"))
 API_HASH = getenv("API_HASH", "0f8f66b06b1c53b9263bcfb1123e9c85")
 
 BOT_TOKEN = getenv("BOT_TOKEN", "")
-TG_BOT_WORKERS = int(getenv("TG_BOT_WORKERS", "4"))
+BOT_WORKERS = int(getenv("BOT_WORKERS", "4"))
 COMMM_AND_PRE_FIX = getenv("COMMM_AND_PRE_FIX", "/")
 START_COMMAND = getenv("START_COMMAND", "start")
 START_OTHER_USERS_TEXT = getenv(
