@@ -30,13 +30,13 @@ if os.path.isfile(filename):
         contents = file.read()
     session_list = re.findall(r"(SESSION\d+)=.*", contents)
     session_index = len(session_list) + 1
+    session_index += 1
 else:
     session_index = 1
 
 @app.on_message(command_filter)
 async def create_env(client, message):
     global session_index
-    session_index += 1
     with open(filename, "a") as file:
         file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
         load_dotenv()
