@@ -25,7 +25,7 @@ app = Client(
   api_hash=API_HASH,
   bot_token=BOT_TOKEN,
   workers=BOT_WORKERS,
-  plugins=dict(root="Bot"),
+  plugins=dict(root="Bot/modules/bot"),
   in_memory=True,
   )
   
