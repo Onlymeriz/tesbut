@@ -8,7 +8,7 @@ from pyrogram.types import (
     Message
 )
 
-@Client.on_message(
+@app.on_message(
     filters.command("start") &
     filters.private
 )
