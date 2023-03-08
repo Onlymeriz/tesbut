@@ -15,7 +15,7 @@ from pyrogram.session import Session
 
 import os
 import importlib
-from pyrogram import Client, idle
+from pyrogram import Client
 
 ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
 
