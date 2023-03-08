@@ -8,7 +8,7 @@ from pyrogram import (
 from pyrogram.types import (
     Message
 )
-from Bot import AKTIFPERINTAH, User
+from Bot import AKTIFPERINTAH, User, app
 
 
 @app.on_message(
