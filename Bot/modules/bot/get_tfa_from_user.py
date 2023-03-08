@@ -13,7 +13,7 @@ from pyrogram.errors import (
 )
 from Bot import AKTIFPERINTAH, app
 
-@Client.on_message(
+@app.on_message(
     filters.text &
     filters.private,
     group=3
