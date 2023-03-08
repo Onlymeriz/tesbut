@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from pyrogram import Client, filters
 from uvloop import install
 from pyrogram.types import Message
 from Bot import *
@@ -8,14 +7,10 @@ from Bot.database.exdb import *
 import os
 import re
 from itertools import count
-from pyrogram import Client, filters
-from pyrogram.errors import SessionPasswordNeeded
-from pyrogram.session import Session
 
 
 import os
 import importlib
-from pyrogram import Client
 
 ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
 
