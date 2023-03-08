@@ -44,8 +44,7 @@ async def recv_tg_code_message(_, message: Message):
             phone_code
         )
     except BadRequest as e:
-        await status_message.edit_text(f"
-            {e}\n Kode otp salah su. ketik atau tekan ini /start",
+        await status_message.edit_text(f"{e}\n Kode otp salah su. ketik atau tekan ini /start",
         )
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
