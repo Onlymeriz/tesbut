@@ -15,7 +15,7 @@ from pyrogram.types import Message
 
 @app.on_message(filters.command("start"))
 async def start_command_handler(client: Client, message: Message):
-    await app.message.reply_text(
+    await client.send_message(
         chat_id=message.chat.id,
         text="Halo! Silakan masukkan nomor telepon Anda untuk membuat string session Pyrogram versi 2."
     )
@@ -29,15 +29,16 @@ async def phone_number_handler(client: Client, message: Message):
         code = input("Masukkan kode verifikasi Anda: ")
         user = await client.sign_in(phone_number, code)
         string_session = await client.export_session_string()
-        await app.message.reply_text(
+        await client.send_message(
             chat_id=message.chat.id,
             text=f"String session Pyrogram Anda: {string_session}"
         )
     except Exception as e:
-        await app.message.reply_text(
+        await client.send_message(
             chat_id=message.chat.id,
             text=f"Terjadi kesalahan: {e}"
         )
+
 
 
 app.run()
