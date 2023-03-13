@@ -1,7 +1,4 @@
 
-coroutine = function(*args, **kwargs)
-TypeError: Start.start() got an unexpected keyword argument 'bot_token'
-
 import pyrogram
 
 api_id = "11432539"
