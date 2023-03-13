@@ -10,4 +10,4 @@ app_password = "6279149779:AAEFnmoUUcxfMeceZQJ4_E3lETYlaqWjciU"
 
 app = pyrogram.Client(session_string, api_id, api_hash)
 
-await app.start(bot_token=app_password)
+app.start(await bot_token=app_password)
