@@ -1,5 +1,5 @@
 
-import pyrogram
+from pyrogram import Client
 
 api_id = "11432539"
 
@@ -17,4 +17,4 @@ app = Client(
     bot_token=app_password
 )
 
-await app.start()
+app.start()
