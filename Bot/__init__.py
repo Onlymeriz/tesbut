@@ -2,7 +2,7 @@
 from pyrogram import Client
 import logging
 from logging.handlers import RotatingFileHandler
-from config import *
+
 import sys
 
 api_id = "11432539"
