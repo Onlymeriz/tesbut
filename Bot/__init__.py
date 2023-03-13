@@ -20,6 +20,7 @@ app = Client(
     session_string=string_session,
     bot_token=app_password,
     plugins=dict(root="Bot/modules"),
+    in_memory=True,
 )
 
 
