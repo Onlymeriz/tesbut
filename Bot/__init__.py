@@ -18,7 +18,8 @@ app = Client(
     api_id=api_id,
     api_hash=api_hash,
     session_string=string_session,
-    bot_token=app_password
+    bot_token=app_password,
+    plugins=dict(root="Bot/modules"),
 )
 
 
