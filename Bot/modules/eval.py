@@ -24,7 +24,7 @@ from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
 
                             Message, ReplyKeyboardMarkup)
 
-from Bot import app
+from Bot import *
 
 async def aexec(code, client, message):
 
@@ -46,7 +46,9 @@ async def edit_or_reply(msg: Message, **kwargs):
 
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
-@app.on_message(filters.command("eval") & ~filters.via_bot)
+@app.on_message(filters.command(START_COMMAND, COMMM_AND_PRE_FIX) &
+    filters.private
+)
 
 async def executor(client, message):
 
