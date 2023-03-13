@@ -1,3 +1,7 @@
+
+coroutine = function(*args, **kwargs)
+TypeError: Start.start() got an unexpected keyword argument 'bot_token'
+
 import pyrogram
 
 api_id = "11432539"
@@ -8,6 +12,6 @@ session_string = "BQAhIHQASRFm9xQX_UJ2wI5M5aqTeEcr9pXjiHGhxoEYdl7OvJjwHWZJEZDr0E
 
 app_password = "6279149779:AAEFnmoUUcxfMeceZQJ4_E3lETYlaqWjciU"
 
-app = pyrogram.Client(session_string, api_id, api_hash)
+app = pyrogram.Client(session_string, api_id, api_hash, bot_token=app_password)
 
-app.start(bot_token=app_password)
+app.start()
