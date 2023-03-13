@@ -1,4 +1,4 @@
-from Bot import app
+from Bot import *
 
 
 
