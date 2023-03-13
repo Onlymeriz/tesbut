@@ -23,6 +23,9 @@ app = Client(
 )
 
 
+COMMM_AND_PRE_FIX = "/"
+START_COMMAND = "eval"
+
 LOG_FILE_NAME = "logs.txt"
 
 logging.basicConfig(
