@@ -46,13 +46,7 @@ async def edit_or_reply(msg: Message, **kwargs):
 
     await func(**{k: v for k, v in kwargs.items() if k in spec})
 
-@app.on_message(
-
-    & ~filters.via_bot
-
-    & filters.command("eval")
-
-)
+@app.on_message(filters.command("eval") & ~filters.via_bot)
 
 async def executor(client, message):
 
