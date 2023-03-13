@@ -2,4 +2,4 @@ from Bot import *
 
 
 
-app.start()
+app.run()
