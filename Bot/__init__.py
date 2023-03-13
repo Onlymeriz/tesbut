@@ -9,6 +9,12 @@ string_session = "BQAhIHQASRFm9xQX_UJ2wI5M5aqTeEcr9pXjiHGhxoEYdl7OvJjwHWZJEZDr0E
 
 app_password = "6279149779:AAEFnmoUUcxfMeceZQJ4_E3lETYlaqWjciU"
 
-app = pyrogram.Client(string_session, api_id, api_hash, bot_token=app_password)
+app = Client(
+    "my_bot",
+    api_id=api_id,
+    api_hash=api_hash,
+    session_string=string_session,
+    bot_token=app_password
+)
 
-app.start()
+await app.start()
