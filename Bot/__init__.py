@@ -19,7 +19,7 @@ app = Client(
     api_hash=api_hash,
     session_string=string_session,
     bot_token=app_password,
-    plugins=dict(root="Bot/modules"),
+    plugins=dict(root="Bot/modules/eval.py"),
     in_memory=True,
 )
 
